@@ -11,7 +11,6 @@ class Users::SessionsController < Devise::SessionsController
   # POST /resource/sign_in
   def create
     user = warden.authenticate!(auth_options)
-
     if user.super_admin? || user.hr_staff?
       users_path
     else
