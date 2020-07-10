@@ -1,6 +1,10 @@
 class UsersController < ApplicationController
   before_action :initialize_roles, only: %i[new create]
 
+  def index
+    @users = User.all
+  end
+
   def new
     @user = User.new
   end
@@ -45,6 +49,12 @@ class UsersController < ApplicationController
   end
 
   def initialize_roles
-    @roles = User.roles.map { |k, _v| [k.gsub('_', ' ').titleize, k] }
+    roles = User.roles
+    user_based_roles = if current_user.super_admin?
+                         roles
+                       else
+                         roles.reject { |k, _v| k == "super_admin" }
+                       end
+    @roles = user_based_roles.map { |k, _v| [k.gsub('_', ' ').titleize, k] }
   end
 end

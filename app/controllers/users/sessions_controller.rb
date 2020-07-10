@@ -12,8 +12,8 @@ class Users::SessionsController < Devise::SessionsController
   def create
     user = warden.authenticate!(auth_options)
 
-    if user.super_admin?
-      admins_path
+    if user.super_admin? || user.hr_staff?
+      users_path
     else
       root_path
     end
