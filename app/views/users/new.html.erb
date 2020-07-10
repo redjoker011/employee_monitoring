@@ -1,16 +1,6 @@
 <section class="section">
   <div class="container">
-    <div class="column">
-      <% flash.each do |type, msg| %>
-        <article
-          class="message <%= type == 'notice' ? 'is-success' : 'is-danger' %>"
-        >
-          <div class="message-header">
-            <p><%= msg %></p>
-          </div>
-        </article>
-      <% end %>
-    </div>
+    <%= render "shared/flash" %>
 
     <div class="title has-text-centered">Add User</div>
 
