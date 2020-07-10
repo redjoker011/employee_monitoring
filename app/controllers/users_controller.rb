@@ -33,6 +33,6 @@ class UsersController < ApplicationController
   end
 
   def initialize_roles
-    @roles = User.roles.map { |k, _v| [k, k] }
+    @roles = User.roles.map { |k, _v| [k.gsub('_', ' ').titleize, k] }
   end
 end
