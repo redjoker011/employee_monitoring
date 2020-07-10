@@ -1,5 +1,7 @@
 class LeaveRequestsController < ApplicationController
   before_action :initialize_categories, only: %i[new create]
+  before_action :find_request, only: %i[approve decline]
+
   def index
     @requests = LeaveRequest.all
   end
@@ -20,6 +22,18 @@ class LeaveRequestsController < ApplicationController
     end
   end
 
+  def approve
+    @request.approved!
+
+    redirect_to leave_requests_path, notice: "Leave Successfully Approved"
+  end
+
+  def decline
+    @request.delined!
+
+    redirect_to leave_requests_path, alert: "Leave Successfully Declined"
+  end
+
   private
 
   def leave_requests_params
@@ -30,5 +44,9 @@ class LeaveRequestsController < ApplicationController
   def initialize_categories
     @categories = LeaveRequest.categories
                               .map { |k, _v| [k.gsub('_', ' ').titleize, k] }
+  end
+
+  def find_request
+    @request = LeaveRequest.find(params[:id])
   end
 end
