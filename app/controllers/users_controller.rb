@@ -2,7 +2,7 @@ class UsersController < ApplicationController
   before_action :initialize_roles, only: %i[new create]
 
   def index
-    @users = User.all
+    @users = User.all.where.not(id: current_user.id)
   end
 
   def new
