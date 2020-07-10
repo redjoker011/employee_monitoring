@@ -24,6 +24,8 @@ class LeaveRequestsController < ApplicationController
 
   def approve
     @request.approved!
+    user = @request.user
+    user.update(leave_credits: user.leave_credits - @request.leave_in_days)
 
     redirect_to leave_requests_path, notice: "Leave Successfully Approved"
   end

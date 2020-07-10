@@ -38,7 +38,7 @@ class LeaveRequest < ApplicationRecord
     return unless leave_start_at || leave_end_at
 
     not_less_than_today = leave_start_at.to_date >= Time.zone.today
-    valid_date_range = leave_start_at.to_date >= leave_end_at.to_date
+    valid_date_range = leave_start_at.to_date <= leave_end_at.to_date
     return if not_less_than_today && valid_date_range
 
     errors.add(:base, "Leave Dates Overlapped")
