@@ -23,7 +23,7 @@ class LeaveRequest < ApplicationRecord
   enum category: %i[vacation_leave sick_leave]
 
   validates :reason, :leave_end_at, :leave_start_at, presence: true
-  validate :ensure_date_not_overlapped
+  validate :ensure_date_not_overlapped, on: :create
 
   def leave_in_days
     days = (leave_end_at.to_date - leave_start_at.to_date).to_i + 1
