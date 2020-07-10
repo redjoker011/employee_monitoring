@@ -1,0 +1,75 @@
+<section class="section">
+  <div class="container">
+    <%= render "shared/flash" %>
+
+    <div class="title has-text-centered">File Leave Request</div>
+
+    <%= form_with model: @request, local: true do |f| %>
+      <div class="field is-horizontal">
+        <div class="field-label">
+          <%= f.label :category, "Leave Type", class: "label" %>
+        </div>
+
+        <div class="field-body">
+          <div class="field">
+            <div class="control">
+              <%= f.select :category,  @categories, {}, { class: "select" } %>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="field is-horizontal">
+        <div class="field-label">
+          <%= f.label :reason, "Reason", class: "label" %>
+        </div>
+
+        <div class="field-body">
+          <div class="field">
+            <div class="control">
+              <%= f.text_field :reason,  { class: "input" } %>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="field is-horizontal">
+        <div class="field-label">
+          <%= f.label :leave_start_at, "Start Date", class: "label" %>
+        </div>
+
+        <div class="field-body">
+          <div class="field">
+            <div class="control">
+              <%= f.date_field :leave_start_at,  { class: "input" } %>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="field is-horizontal">
+        <div class="field-label">
+          <%= f.label :leave_end_at, "End Date", class: "label" %>
+        </div>
+
+        <div class="field-body">
+          <div class="field">
+            <div class="control">
+              <%= f.date_field :leave_end_at,  { class: "input" } %>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="field is-grouped">
+        <div class="control">
+          <%= f.submit "Create", class: "button is-link" %>
+        </div>
+
+        <div class="control">
+          <%= link_to "Cancel", user_path(current_user), class: "button is-link is-light" %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</section>
