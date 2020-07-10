@@ -48,7 +48,8 @@ class UsersController < ApplicationController
       name: params[:name],
       email: params[:email],
       password: params[:password],
-      confirm_password: params[:confirm_password]
+      confirm_password: params[:confirm_password],
+      leave_credits: params[:leave_credits]
     }
   end
 
