@@ -5,11 +5,12 @@
 #  id                     :bigint           not null, primary key
 #  email                  :string           default(""), not null
 #  encrypted_password     :string           default(""), not null
+#  leave_credits          :integer          default(0)
 #  name                   :string
 #  remember_created_at    :datetime
 #  reset_password_sent_at :datetime
 #  reset_password_token   :string
-#  role                   :integer          default(0), not null
+#  role                   :integer          default("employee"), not null
 #  created_at             :datetime         not null
 #  updated_at             :datetime         not null
 #
