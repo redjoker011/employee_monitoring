@@ -3,7 +3,7 @@ class LeaveRequestsController < ApplicationController
   before_action :find_request, only: %i[approve decline]
 
   def index
-    @requests = LeaveRequest.all
+    @requests = LeaveRequest.joins(:user).all
   end
 
   def new
