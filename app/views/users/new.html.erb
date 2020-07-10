@@ -49,6 +49,20 @@
 
       <div class="field is-horizontal">
         <div class="field-label">
+          <%= f.label :leave_credits, "Employee Leave Credits", class: "label" %>
+        </div>
+
+        <div class="field-body">
+          <div class="field">
+            <div class="control">
+              <%= f.number_field :leave_credits, { value: 0, class: "input" } %>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="field is-horizontal">
+        <div class="field-label">
           <%= f.label :password, "Password", class: "label" %>
         </div>
 
