@@ -24,13 +24,15 @@
 
         <tbody>
           <tr>
-            <td>Vacation</td>
-            <td>Going to Vacation</td>
-            <td>July 20, 2020</td>
-            <td>July 25, 2020</td>
-            <td>5</td>
-            <td>Approved</td>
-            <td></td>
+            <% @requests.each do |req| %>
+              <td><%= req.category.titleize %></td>
+              <td><%= req.reason %></td>
+              <td><%= req.leave_start_at %></td>
+              <td><%= req.leave_end_at %></td>
+              <td>5</td>
+              <td><%= req.status.titleize %></td>
+              <td></td>
+            <% end %>
           </tr>
         </tbody>
       </table>
