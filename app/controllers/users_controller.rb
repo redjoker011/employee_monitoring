@@ -20,6 +20,18 @@ class UsersController < ApplicationController
     end
   end
 
+  def destroy
+    user = User.find(params[:id])
+
+    if user
+      user.destroy!
+      flash[:notice] = "User Successfully Deleted"
+    else
+      flash[:alert] = "User Not Found"
+    end
+    redirect_to admins_path
+  end
+
   private
 
   def user_params
