@@ -18,9 +18,18 @@
 #  index_users_on_email                 (email) UNIQUE
 #  index_users_on_reset_password_token  (reset_password_token) UNIQUE
 #
-require 'test_helper'
+FactoryBot.define do
+  sequence :email do
+    "#{Faker::Internet.safe_email}-#{Time.zone.now.to_i}"
+  end
 
-class UserTest < ActiveSupport::TestCase
-  # should validate_presence_of(:name)
-  # should validate_presence_of(:role)
+  sequence :username do
+    FFaker::InternetSE.login_user_name
+  end
+
+  factory :user do
+    email
+    password { Devise.friendly_token.first(8) }
+    role { "admin" }
+  end
 end
