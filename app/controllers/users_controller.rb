@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
-  before_action :initialize_roles, only: %i[new create]
+  before_action :initialize_roles, only: %i[new create edit update]
+  before_action :find_user, only: %i[edit update destroy]
 
   def index
     @users = User.all.where.not(id: current_user.id)
@@ -11,6 +12,18 @@ class UsersController < ApplicationController
 
   def show
     @user = current_user
+  end
+
+  def edit
+  end
+
+  def update
+    if @user.update(sanitized_user_params)
+      redirect_to users_path, notice: "User Successfully Updated"
+    else
+      flash[:alert] = @user.errors.full_messages.to_sentence
+      render :edit
+    end
   end
 
   def create
@@ -29,10 +42,8 @@ class UsersController < ApplicationController
   end
 
   def destroy
-    user = User.find(params[:id])
-
-    if user
-      user.destroy!
+    if @user
+      @user.destroy!
       flash[:notice] = "User Successfully Deleted"
     else
       flash[:alert] = "User Not Found"
@@ -61,5 +72,13 @@ class UsersController < ApplicationController
                          roles.reject { |k, _v| k == "super_admin" }
                        end
     @roles = user_based_roles.map { |k, _v| [k.gsub('_', ' ').titleize, k] }
+  end
+
+  def find_user
+    @user = User.find(params[:id])
+  end
+
+  def sanitized_user_params
+    params.require(:user).permit(:name, :role, :email, :leave_credits)
   end
 end
