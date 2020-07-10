@@ -17,4 +17,10 @@
 #  index_leave_requests_on_user_id  (user_id)
 #
 class LeaveRequest < ApplicationRecord
+  belongs_to :user
+
+  enum status: %i[pending declined approved]
+  enum category: %i[vacation_leave sick_leave]
+
+  validates :reason, :leave_end_at, :leave_start_at, presence: true
 end

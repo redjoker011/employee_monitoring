@@ -26,6 +26,8 @@ class User < ApplicationRecord
 
   enum role: %i[employee hr_staff super_admin]
 
+  has_many :leave_requests, dependent: :destroy
+
   validates :name, :role, presence: true
   validates :name, uniqueness: true
   validates :email, uniqueness: true
