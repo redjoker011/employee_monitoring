@@ -1,1 +1,21 @@
-<h1>Hello</h1>
+<h1>Employees</h1>
+
+<table class="table">
+  <thead>
+    <tr>
+      <td>Name</td>
+      <td>Email</td>
+      <td>Role</td>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @users.each do |user| %>
+      <tr>
+        <td><%= user.name %></td>
+        <td><%= user.email %></td>
+        <td><%= user.role %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
