@@ -25,6 +25,13 @@ class LeaveRequest < ApplicationRecord
   validates :reason, :leave_end_at, :leave_start_at, presence: true
   validate :ensure_date_not_overlapped
 
+  def leave_in_days
+    days = (leave_end_at.to_date - leave_start_at.to_date).to_i + 1
+    return 1 if days.zero?
+
+    days
+  end
+
   private
 
   def ensure_date_not_overlapped
