@@ -23,4 +23,17 @@ class LeaveRequest < ApplicationRecord
   enum category: %i[vacation_leave sick_leave]
 
   validates :reason, :leave_end_at, :leave_start_at, presence: true
+  validate :ensure_date_not_overlapped
+
+  private
+
+  def ensure_date_not_overlapped
+    return unless leave_start_at || leave_end_at
+
+    not_less_than_today = leave_start_at.to_date >= Time.zone.today
+    valid_date_range = leave_start_at.to_date >= leave_end_at.to_date
+    return if not_less_than_today && valid_date_range
+
+    errors.add(:base, "Leave Dates Overlapped")
+  end
 end
