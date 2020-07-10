@@ -3,7 +3,13 @@ class UsersController < ApplicationController
   before_action :find_user, only: %i[edit update destroy]
 
   def index
-    @users = User.all.where.not(id: current_user.id)
+    users = User.all.where.not(id: current_user.id)
+
+    @users = if current_user.super_admin?
+               users
+             else
+               users.where.not(role: "super_admin")
+             end
   end
 
   def new
