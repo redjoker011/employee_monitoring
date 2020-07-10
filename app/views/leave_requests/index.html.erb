@@ -29,7 +29,7 @@
               <td><%= req.reason %></td>
               <td><%= to_short_date req.leave_start_at %></td>
               <td><%= to_short_date req.leave_end_at %></td>
-              <td>5</td>
+              <td><%= req.leave_in_days %></td>
               <td><%= req.status.titleize %></td>
               <td></td>
             <% end %>
