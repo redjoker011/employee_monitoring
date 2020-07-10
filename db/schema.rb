@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_07_10_161549) do
+ActiveRecord::Schema.define(version: 2020_07_10_162306) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -22,6 +22,18 @@ ActiveRecord::Schema.define(version: 2020_07_10_161549) do
     t.datetime "updated_at", null: false
     t.index ["app_id"], name: "index_leave_credits_on_app_id"
     t.index ["credits"], name: "index_leave_credits_on_credits"
+  end
+
+  create_table "leave_requests", force: :cascade do |t|
+    t.bigint "user_id"
+    t.integer "category", default: 0, null: false
+    t.text "reason"
+    t.integer "status", default: 0, null: false
+    t.datetime "leave_start_at"
+    t.datetime "leave_end_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_leave_requests_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
