@@ -14,38 +14,9 @@
     <div><%= @user.email %></div>
   </div>
 
-  <div class="card mt-6">
-    <header class="card-header">
-      <p class="card-header-title">
-        Leave Details
-      </p>
-    </header>
-
-    <div class="card-content">
-      <table class="table is-fullwidth is-hoverable">
-        <thead>
-          <tr>
-            <td>Type</td>
-            <td>Remaining Leave Credits</td>
-            <td>Used Leave Credits</td>
-          </tr>
-        </thead>
-
-        <tbody>
-          <tr>
-            <td>Vacation</td>
-            <td>5</td>
-            <td>10</td>
-          </tr>
-
-          <tr>
-            <td>Sick Leave</td>
-            <td>5</td>
-            <td>10</td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
+  <div class="is-flex">
+    <div class="mr-1 has-text-weight-medium">Remaining Leave Credits: </div>
+    <div><%= @user.leave_credits %></div>
   </div>
 
   <div class="card mt-6">
@@ -54,7 +25,9 @@
         Leave Requests
       </p>
 
-      <%= link_to "Add Request", "#", class: "button is-link is-small mx-2 my-2" %>
+      <% if has_leave_credits?(@user.leave_credits) %>
+        <%= link_to "Add Request", "#", class: "button is-link is-small mx-2 my-2" %>
+      <% end %>
     </header>
 
     <div class="card-content">
