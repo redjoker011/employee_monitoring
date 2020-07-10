@@ -1,0 +1,99 @@
+<section class="section">
+  <div class="container">
+    <div class="column">
+      <% flash.each do |type, msg| %>
+        <article
+          class="message <%= type == 'notice' ? 'is-success' : 'is-danger' %>"
+        >
+          <div class="message-header">
+            <p><%= msg %></p>
+          </div>
+        </article>
+      <% end %>
+    </div>
+
+    <div class="title has-text-centered">Add User</div>
+
+    <%= form_with url: create_user_path, local: true do |f| %>
+      <div class="field is-horizontal">
+        <div class="field-label">
+          <%= f.label :role, "Employee Role", class: "label" %>
+        </div>
+
+        <div class="field-body">
+          <div class="field">
+            <div class="control">
+              <%= f.select :role,  @roles, {}, { class: "select" } %>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="field is-horizontal">
+        <div class="field-label">
+          <%= f.label :name, "Employee Name", class: "label" %>
+        </div>
+
+        <div class="field-body">
+          <div class="field">
+            <div class="control">
+              <%= f.text_field :name,  { class: "input" } %>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="field is-horizontal">
+        <div class="field-label">
+          <%= f.label :email, "Employee Email", class: "label" %>
+        </div>
+
+        <div class="field-body">
+          <div class="field">
+            <div class="control">
+              <%= f.email_field :email,  { class: "input" } %>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="field is-horizontal">
+        <div class="field-label">
+          <%= f.label :password, "Password", class: "label" %>
+        </div>
+
+        <div class="field-body">
+          <div class="field">
+            <div class="control">
+              <%= f.password_field :password,  { class: "input" } %>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="field is-horizontal">
+        <div class="field-label">
+          <%= f.label :confirm_password, "Confirm Password", class: "label" %>
+        </div>
+
+        <div class="field-body">
+          <div class="field">
+            <div class="control">
+              <%= f.password_field :confirm_password,  { class: "input" } %>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="field is-grouped">
+        <div class="control">
+          <%= f.submit "Create", class: "button is-link" %>
+        </div>
+
+        <div class="control">
+          <%= link_to "Cancel", admins_path, class: "button is-link is-light" %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</section>
