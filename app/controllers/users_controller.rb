@@ -17,7 +17,7 @@ class UsersController < ApplicationController
 
     user = User.new(user_params.reject! { |k| k == :confirm_password })
     if user.save
-      redirect_to admins_path, notice: 'User Successfully Created'
+      redirect_to users_path, notice: 'User Successfully Created'
     else
       flash[:alert] = user.errors.full_messages.to_sentence
       render :new
@@ -33,7 +33,7 @@ class UsersController < ApplicationController
     else
       flash[:alert] = "User Not Found"
     end
-    redirect_to admins_path
+    redirect_to users_path
   end
 
   private
