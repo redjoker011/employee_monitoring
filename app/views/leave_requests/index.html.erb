@@ -27,8 +27,8 @@
             <% @requests.each do |req| %>
               <td><%= req.category.titleize %></td>
               <td><%= req.reason %></td>
-              <td><%= req.leave_start_at %></td>
-              <td><%= req.leave_end_at %></td>
+              <td><%= to_short_date req.leave_start_at %></td>
+              <td><%= to_short_date req.leave_end_at %></td>
               <td>5</td>
               <td><%= req.status.titleize %></td>
               <td></td>

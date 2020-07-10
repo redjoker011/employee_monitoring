@@ -18,6 +18,7 @@ class UsersController < ApplicationController
 
   def show
     @user = current_user
+    @requests = @user.leave_requests
   end
 
   def edit
