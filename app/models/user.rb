@@ -24,6 +24,8 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
+  enum role: %i[employee hr admin]
+
   validates :name, :role, presence: true
   validates :name, uniqueness: true
 end
