@@ -15,6 +15,7 @@
         <thead>
           <tr>
             <td>Type</td>
+            <td>User Email</td>
             <td>Reason</td>
             <td>Start Date</td>
             <td>End Date</td>
@@ -28,6 +29,7 @@
           <% @requests.each do |req| %>
             <tr>
               <td><%= req.category.titleize %></td>
+              <td><%= req.user.email %></td>
               <td><%= req.reason %></td>
               <td><%= to_short_date req.leave_start_at %></td>
               <td><%= to_short_date req.leave_end_at %></td>
