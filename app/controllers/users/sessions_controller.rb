@@ -9,16 +9,8 @@ class Users::SessionsController < Devise::SessionsController
   # end
 
   # POST /resource/sign_in
-  def create
-    user = warden.authenticate!(auth_options)
-    if user.super_admin? || user.hr_staff?
-      users_path
-    else
-      user_path(user)
-    end
-
-    super
-  end
+  # def create
+  # end
 
   # DELETE /resource/sign_out
   # def destroy
