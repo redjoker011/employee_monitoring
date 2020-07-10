@@ -1,0 +1,86 @@
+<%= render "shared/flash" %>
+
+<div class="card px-4 py-4">
+  <h1 class="title">Employee Details</h1>
+
+  <div class="is-flex">
+    <div class="mr-1 has-text-weight-medium">Name: </div>
+    <div><%= @user.name.titleize %></div>
+  </div>
+
+
+  <div class="is-flex">
+    <div class="mr-1 has-text-weight-medium">Email: </div>
+    <div><%= @user.email %></div>
+  </div>
+
+  <div class="card mt-6">
+    <header class="card-header">
+      <p class="card-header-title">
+        Leave Details
+      </p>
+    </header>
+
+    <div class="card-content">
+      <table class="table is-fullwidth is-hoverable">
+        <thead>
+          <tr>
+            <td>Type</td>
+            <td>Remaining Leave Credits</td>
+            <td>Used Leave Credits</td>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr>
+            <td>Vacation</td>
+            <td>5</td>
+            <td>10</td>
+          </tr>
+
+          <tr>
+            <td>Sick Leave</td>
+            <td>5</td>
+            <td>10</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="card mt-6">
+    <header class="card-header">
+      <p class="card-header-title">
+        Leave Requests
+      </p>
+
+      <%= link_to "Add Request", "#", class: "button is-link is-small mx-2 my-2" %>
+    </header>
+
+    <div class="card-content">
+      <table class="table is-fullwidth is-hoverable">
+        <thead>
+          <tr>
+            <td>Type</td>
+            <td>Reason</td>
+            <td>Start Date</td>
+            <td>End Date</td>
+            <td>No. of Days</td>
+            <td>Status</td>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr>
+            <td>Vacation</td>
+            <td>Going to Vacation</td>
+            <td>July 20, 2020</td>
+            <td>July 25, 2020</td>
+            <td>5</td>
+            <td>Approved</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

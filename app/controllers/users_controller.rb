@@ -9,6 +9,10 @@ class UsersController < ApplicationController
     @user = User.new
   end
 
+  def show
+    @user = current_user
+  end
+
   def create
     unless user_params[:password] == user_params[:password]
       flash[:alert] = 'Password Should Match'

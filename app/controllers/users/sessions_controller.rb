@@ -15,7 +15,7 @@ class Users::SessionsController < Devise::SessionsController
     if user.super_admin? || user.hr_staff?
       users_path
     else
-      root_path
+      user_path(user)
     end
 
     super
