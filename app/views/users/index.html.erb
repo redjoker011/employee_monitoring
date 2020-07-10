@@ -1,9 +1,16 @@
 <%= render "shared/flash" %>
 
 <h1 class="title">Employees</h1>
+<div class="is-flex mb-4">
+  <div class="mr-4">
+    <%= link_to "Add Employee", new_user_path, class: "button is-link is-light" %>
+  </div>
 
-<div>
-  <%= link_to "Add User", new_user_path, class: "button is-link is-light" %>
+  <% if current_user.hr_staff? %>
+    <div>
+      <%= link_to "Leave Requests", leave_requests_path, class: "button is-link is-light" %>
+    </div>
+  <% end %>
 </div>
 
 <table class="table">
