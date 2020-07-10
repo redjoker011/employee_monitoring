@@ -29,9 +29,9 @@ class LeaveRequestsController < ApplicationController
   end
 
   def decline
-    @request.delined!
+    @request.declined!
 
-    redirect_to leave_requests_path, alert: "Leave Successfully Declined"
+    redirect_to leave_requests_path, notice: "Leave Successfully Declined"
   end
 
   private
