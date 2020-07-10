@@ -1,3 +1,5 @@
+<%= render "shared/flash" %>
+
 <div class="card px-4 py-4">
   <h1 class="title">Leave Requests</h1>
 
@@ -23,17 +25,37 @@
         </thead>
 
         <tbody>
-          <tr>
-            <% @requests.each do |req| %>
+          <% @requests.each do |req| %>
+            <tr>
               <td><%= req.category.titleize %></td>
               <td><%= req.reason %></td>
               <td><%= to_short_date req.leave_start_at %></td>
               <td><%= to_short_date req.leave_end_at %></td>
               <td><%= req.leave_in_days %></td>
               <td><%= req.status.titleize %></td>
-              <td></td>
-            <% end %>
-          </tr>
+              <td>
+                <% if req.pending? %>
+                  <div class="is-flex">
+                    <div class="mr-2">
+                      <%= link_to "Approve",
+                        approve_request_leave_request_path(req),
+                        method: :post,
+                        class: "button is-link is-light has-background-success has-text-primary-light"
+                      %>
+                    </div>
+
+                    <div>
+                      <%= link_to "Decline",
+                        decline_request_leave_request_path(req),
+                        method: :post,
+                        class: "button is-link is-light has-background-danger has-text-primary-light"
+                      %>
+                    </div>
+                  <% end %>
+                </div>
+              </td>
+            </tr>
+          <% end %>
         </tbody>
       </table>
     </div>
